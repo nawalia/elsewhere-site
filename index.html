@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elsewhere. Be anywhere. Stay put.</title>
+<meta name="description" content="Elsewhere sets your own iPhone's location, from the iPhone itself, and holds it. Find My and every other app see the place you picked. No jailbreak, no computer after setup.">
+<link rel="canonical" href="https://elsewhere.live/">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+<meta name="theme-color" content="#06070d">
+<meta property="og:title" content="Elsewhere. Be anywhere. Stay put.">
+<meta property="og:description" content="Pick a place on the map. Your iPhone reports it to Find My and every other app, and stays there.">
+<meta property="og:url" content="https://elsewhere.live/">
+<meta property="og:type" content="website">
+</head>
+<body>
+
+<canvas id="map" aria-hidden="true"></canvas>
+<div class="map-shade" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <span class="mark"><svg viewBox="156 126 88 132" aria-hidden="true"><path d="M200,252 C200,252 164,196 164,170 A36,36 0 1 1 236,170 C236,196 200,252 200,252 Z" fill="#fff"/><circle cx="200" cy="168" r="13" fill="#4f69f2"/></svg></span>
+      Elsewhere
+    </a>
+    <nav>
+      <a href="#features" class="hide-small">Features</a>
+      <a href="#compare" class="hide-small">Compare</a>
+      <a href="#price">Price</a>
+      <a href="#founder" class="hide-small">Founder</a>
+      <a class="btn small" href="/install.html">Get Elsewhere</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="status" aria-hidden="true"><span class="dot"></span><b>Connected</b><span class="coords">38.54490, -121.74050</span></div>
+      <h1>Be anywhere.<br><span class="soft">Stay put.</span></h1>
+      <p class="lede">Elsewhere sets your iPhone's own location, from the iPhone, and holds it there.
+      Find My, Maps, the weather, every app on the phone sees the place you picked, until you
+      change it. No jailbreak. No computer once it is set up.</p>
+      <div class="cta-row">
+        <a class="btn" href="/install.html">Get Elsewhere</a>
+        <a class="btn quiet" href="#features">Everything it does</a>
+      </div>
+      <p class="fine">Free while it is in beta. On sale 25 December 2026. iPhone, iOS 17.4 or later.</p>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">Scroll</div>
+</div>
+
+<main class="after">
+
+<section class="tight">
+  <div class="wrap">
+    <div class="facts reveal">
+      <div class="fact"><div class="big">To the metre</div><p>The exact coordinates you chose. Nothing nudged, nothing wobbled, nothing added.</p></div>
+      <div class="fact"><div class="big">It holds</div><p>Locked, in your pocket, for hours. If the connection drops, Elsewhere reconnects and sets it again by itself.</p></div>
+      <div class="fact"><div class="big">No computer</div><p>Set up and used on the iPhone alone. The phone even pairs with itself on iOS 27.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <p class="kicker reveal">Everything it does</p>
+    <h2 class="reveal">One app. Every way to be somewhere else.</h2>
+    <p class="sub reveal">Every item here is in the app today.</p>
+    <div class="groups">
+      <div class="group reveal">
+        <h3>Set a place</h3>
+        <ul>
+          <li><span><b>Tap, search or paste.</b> Tap the map, search an address, or paste coordinates.</span></li>
+          <li><span><b>Satellite and 3D maps.</b> Tilt the map and switch to satellite to pin the exact doorway.</span></li>
+          <li><span><b>Address book.</b> Save places under your own names and set them again in two taps.</span></li>
+          <li><span><b>Back to real.</b> One tap returns the phone to where it really is.</span></li>
+        </ul>
+      </div>
+      <div class="group reveal d1">
+        <h3>Move</h3>
+        <ul>
+          <li><span><b>Routes on real roads.</b> Walk, run, cycle or drive between stops, following actual streets.</span></li>
+          <li><span><b>Drives like a car.</b> Real acceleration and braking, slowing for corners, waiting at stops.</span></li>
+          <li><span><b>Joystick.</b> Steer a set spot by hand; directions follow the way the map is turned.</span></li>
+          <li><span><b>Saved routes and GPX.</b> Keep whole trips with waits at each stop, or import a GPX file.</span></li>
+          <li><span><b>Sat nav view.</b> While a route plays the map tilts and turns with you.</span></li>
+        </ul>
+      </div>
+      <div class="group reveal">
+        <h3>Keep it there</h3>
+        <ul>
+          <li><span><b>Holds on by itself.</b> iOS drops a simulated location when the connection closes; Elsewhere keeps it open and sets it again.</span></li>
+          <li><span><b>Set again in one tap.</b> If the phone restarted or the app was closed, your last place is waiting on the map.</span></li>
+          <li><span><b>Alerts if it drops.</b> You hear about it if your location stops being held, and a problem log keeps the history.</span></li>
+          <li><span><b>Checks it worked.</b> Elsewhere watches what the phone itself reports and marks the place confirmed.</span></li>
+        </ul>
+      </div>
+      <div class="group reveal d1">
+        <h3>Control it from anywhere</h3>
+        <ul>
+          <li><span><b>Lock screen.</b> A Live Activity shows the place and lets you pause or go back without unlocking.</span></li>
+          <li><span><b>Siri and Shortcuts.</b> Set a saved place or go back to real by voice or automation.</span></li>
+          <li><span><b>Help centre.</b> Checks your setup step by step and tells you what to fix.</span></li>
+          <li><span><b>Make it yours.</b> Light or dark, and five app icons to choose from.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker reveal">Yours, not ours</p>
+    <h2 class="reveal">No account. No tracking. Works offline.</h2>
+    <div class="cards">
+      <div class="card reveal"><h3>Nothing to sign up for</h3><p>No email, no password. A purchase gives you a licence key, good on 2 iPhones, and you can move it yourself.</p></div>
+      <div class="card reveal d1"><h3>Collects nothing</h3><p>Elsewhere never sends your locations anywhere. The places you set stay on your phone.</p></div>
+      <div class="card reveal d2"><h3>No internet needed</h3><p>Setting a place never needs a connection, and a paid key keeps working for a month offline.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <p class="kicker reveal">Compared</p>
+    <h2 class="reveal">Less than half the price.</h2>
+    <p class="sub reveal">What the best known iPhone location changers charge, as listed in November 2026.</p>
+    <div class="reveal" style="overflow-x:auto">
+      <table class="compare">
+        <thead><tr><th></th><th class="us">Elsewhere</th><th>Vanish</th><th>Tenorshare iAnyGo</th></tr></thead>
+        <tbody>
+          <tr><td>Monthly</td><td class="us">$4.99</td><td>$5.99</td><td>about $12.95</td></tr>
+          <tr><td>Yearly</td><td class="us">$29.99</td><td>$34.99</td><td>about $59.95</td></tr>
+          <tr><td>Pay once</td><td class="us">$39.99</td><td>$84.99</td><td>about $96</td></tr>
+          <tr><td>Who answers your email</td><td class="us">The person who built it</td><td>Support team</td><td>Support team</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source reveal">Prices from each product's site and published reviews, November 2026; they may have changed since. Elsewhere's are launch prices, which rise on 1 February 2027.</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="kicker reveal">Setup</p>
+    <h2 class="reveal">Five minutes, once.</h2>
+    <p class="sub reveal">Elsewhere walks you through each step and checks it for you.</p>
+    <ol class="steps">
+      <li class="reveal"><h3>Developer Mode</h3><p>A switch Apple puts in Settings. The phone restarts once. Not a jailbreak.</p></li>
+      <li class="reveal d1"><h3>Pair with itself</h3><p>Elsewhere shows a code, you type it into Settings. No Mac involved.</p></li>
+      <li class="reveal d2"><h3>Turn on the helper</h3><p>A free loopback app routes the connection back into the phone. One button opens it.</p></li>
+      <li class="reveal d3"><h3>Pick a place</h3><p>Tap the map, press Set, open Find My. You are there.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="price">
+  <div class="wrap">
+    <p class="kicker reveal">Price</p>
+    <h2 class="reveal">Free in beta. Launch prices after.</h2>
+    <p class="sub reveal">On sale 25 December 2026, with a 7 day free trial. These prices go up on 1 February 2027. No ads, ever.</p>
+    <div class="plans">
+      <div class="plan reveal"><h3>Day pass</h3><div class="price">$1.99</div><p class="per">24 hours, no subscription</p>
+        <a class="btn quiet" href="https://buy.polar.sh/polar_cl_JBkeLIo9dsUvRfbaETOjuaFZak9Wh8Ses6uoy2k2jun" data-polar-checkout data-polar-checkout-theme="dark">Buy a day</a><p class="later">Then $2.99</p></div>
+      <div class="plan reveal d1"><h3>Monthly</h3><div class="price">$4.99</div><p class="per">per month, cancel any time</p>
+        <a class="btn quiet" href="https://buy.polar.sh/polar_cl_pMV4YDcMoU2xE7yN5cBsaX2fchmczBIRXEHKj2oNoFS" data-polar-checkout data-polar-checkout-theme="dark">Start monthly</a><p class="later">Then $6.99</p></div>
+      <div class="plan pick reveal d2"><span class="badge">Save 50%</span><h3>Yearly</h3><div class="price">$29.99</div><p class="per">about $2.50 a month</p>
+        <a class="btn" href="https://buy.polar.sh/polar_cl_v20ux34LTlICNBrhknl8Gr4pKnVMfmvoXho6A4LFCIg" data-polar-checkout data-polar-checkout-theme="dark">Start yearly</a><p class="later">Then $44.99</p></div>
+      <div class="plan reveal d3"><h3>Lifetime</h3><div class="price">$39.99</div><p class="per">pay once, every update</p>
+        <a class="btn quiet" href="https://buy.polar.sh/polar_cl_XgtRckbNIRt8bMgqiltxsKzOz7bhcZQz6Wuxm1V85PC" data-polar-checkout data-polar-checkout-theme="dark">Buy lifetime</a><p class="later">Then $59.99</p></div>
+    </div>
+    <div class="supporter reveal">
+      <div><h3>Early supporter: lifetime for $19.99</h3><p>For the first 20 people, only while the beta lasts. Then it is gone for good.</p></div>
+      <a class="btn" href="https://buy.polar.sh/polar_cl_mGgvTOJkTlASKaRNgVCj4fItgFw7t5w8UaeTP4J34Kl" data-polar-checkout data-polar-checkout-theme="dark">Become one</a>
+    </div>
+    <p class="source reveal">Checkout opens right here, run by Polar, the seller of record, who handle tax and receipts. Pay by card. Lifetime is refundable for 14 days if it does not work on your iPhone.</p>
+  </div>
+</section>
+
+<section id="founder">
+  <div class="wrap">
+    <p class="kicker reveal">Who makes it</p>
+    <div class="founder">
+      <div class="reveal">
+        <p class="quote">Elsewhere is made by one person. No company behind it, no outsourced support.</p>
+        <p class="who">I'm Nimit, a Computer Science and Engineering freshman at UC Davis. I built
+        Elsewhere end to end: the engine that talks to the iPhone's developer services, the app,
+        the setup that lets an iPhone pair with itself, and this site. When you write in, I'm the
+        one who reads it and the one who fixes it.</p>
+      </div>
+      <div class="ledger reveal d1">
+        <div><span>Founder</span><b>Nimit, solo</b></div>
+        <div><span>Based</span><b>Davis, California</b></div>
+        <div><span>Engine</span><b>Rust</b></div>
+        <div><span>App</span><b>Swift, SwiftUI</b></div>
+        <div><span>In beta since</span><b>November 2026</b></div>
+        <div><span>On sale</span><b>25 December 2026</b></div>
+      </div>
+    </div>
+    <div class="invest reveal">
+      <h3>Backing Elsewhere</h3>
+      <p>Location changers are a real paid category: people already pay $5 to $13 a month for
+      them. Elsewhere does the same job for less, on the phone alone, with nothing to sign up for.
+      If you would like to talk about investing, partnering or distributing it, write to me.</p>
+      <div class="why">
+        <div><b>Proven demand</b>Established competitors sell monthly, yearly and lifetime plans.</div>
+        <div><b>Low running cost</b>No servers to hold locations; the phone does the work.</div>
+        <div><b>Built to move fast</b>One person, so decisions take a day, not a quarter.</div>
+      </div>
+      <a class="btn" href="mailto:nanimswa@gmail.com?subject=Elsewhere">Talk to Nimit</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker reveal">Straight answers</p>
+    <h2 class="reveal">What it is not.</h2>
+    <details><summary>It is not a VPN</summary><p>Elsewhere changes the location your iPhone reports, not your internet address. Websites can still see roughly where you connect from.</p></details>
+    <details><summary>It does not hide that it is simulated</summary><p>iOS marks a simulated location, and Elsewhere does not cover that up. Some apps check.</p></details>
+    <details><summary>Find My viewers see the place you set</summary><p>Anyone who can see your location sees the place you picked. What you do with that is up to you.</p></details>
+    <details><summary>Restarting brings back your real location</summary><p>On purpose. Then Set again puts you back in one tap.</p></details>
+    <p style="margin-top:28px"><a class="btn quiet" href="/help.html">All answers</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="/install.html">Install</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/help.html">Help</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/refunds.html">Refunds</a>
+      <a href="mailto:nanimswa@gmail.com">Contact</a>
+    </div>
+    <p>Elsewhere is built by Nimit. Not affiliated with Apple. iPhone, Find My and iOS are
+    trademarks of Apple Inc. Nothing on this site is an offer to sell securities.</p>
+  </div>
+</footer>
+
+<script src="/map.js" defer></script>
+<script defer data-auto-init src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.6.0/dist/embed.global.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help. Elsewhere</title>
+<meta name="description" content="Answers about Elsewhere: how it sets an iPhone's location, whether it holds, what Find My shows, which apps can tell, and what to do when it will not connect.">
+<link rel="canonical" href="https://elsewhere.live/help.html">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+</head>
+<body class="page">
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <span class="mark"><svg viewBox="156 126 88 132" aria-hidden="true"><path d="M200,252 C200,252 164,196 164,170 A36,36 0 1 1 236,170 C236,196 200,252 200,252 Z" fill="#fff"/><circle cx="200" cy="168" r="13" fill="#4f69f2"/></svg></span>
+      Elsewhere
+    </a>
+    <nav>
+      <a href="/install.html">Install</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/help.html" class="hide-small">Help</a>
+      <a class="btn small" href="/install.html">Get Elsewhere</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="plain" style="padding-top:56px">
+  <div class="wrap">
+    <h1>Help</h1>
+    <p class="sub">If the answer is not here, write to
+    <a href="mailto:nanimswa@gmail.com">nanimswa@gmail.com</a>. Nims reads every message.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it works</h2>
+    <details>
+      <summary>What is actually happening on my phone?</summary>
+      <p>iOS has a location simulation tool that Apple built for developers testing apps. Normally
+      a Mac drives it over a cable. Elsewhere drives it from the phone itself, over a connection
+      that loops back into the phone, so no Mac is involved.</p>
+    </details>
+    <details>
+      <summary>Is this a jailbreak?</summary>
+      <p>No. Nothing is unlocked, patched or installed into iOS. You turn on a switch Apple put in
+      Settings, and you can turn it off again whenever you want.</p>
+    </details>
+    <details>
+      <summary>Does the location drift or snap back?</summary>
+      <p>It should not. iOS forgets a simulated location the moment the connection closes, so
+      Elsewhere holds the connection open, sends the same place again, and reconnects if it is
+      ever interrupted. The coordinates are exactly the ones you picked and nothing is added to
+      them.</p>
+    </details>
+    <details>
+      <summary>How long does it hold?</summary>
+      <p>As long as Elsewhere is running, including when the phone is locked. Restarting the phone
+      always returns it to its real location, on purpose. Numbers for battery use and for very long
+      holds will be published here once they have been measured properly, not estimated.</p>
+    </details>
+    <details>
+      <summary>Why does it need a VPN switched on?</summary>
+      <p>Apple's developer service inside iOS only answers connections that look as if they came
+      from another device. The helper is a loopback tunnel: it turns the phone's connection back on
+      itself and sends nothing to the internet. A version of Elsewhere that does this on its own,
+      with no second app, is being built.</p>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What other people and apps see</h2>
+    <details>
+      <summary>Will Find My show the place I set?</summary>
+      <p>Yes. Anyone who can see your location in Find My, including family sharing, sees the place
+      you picked, not where you are. Keep that in mind before you set one.</p>
+    </details>
+    <details>
+      <summary>Can apps tell the location is simulated?</summary>
+      <p>Some can. iOS attaches a flag to a simulated location and any app is free to look at it.
+      Elsewhere does not hide that flag and will not add anything to hide it.</p>
+    </details>
+    <details>
+      <summary>Does it change my IP address?</summary>
+      <p>No. Elsewhere changes the location your phone reports, not the way it connects to the
+      internet. A website can still see roughly where you are connecting from. If you want that
+      changed too you need a real VPN, which is a different thing.</p>
+    </details>
+    <details>
+      <summary>Can I use it for games?</summary>
+      <p>Elsewhere is not built or sold for that. It does not hide the simulated flag, games often
+      check it, and breaking a game's rules is between you and them.</p>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Buying and keys</h2>
+    <details>
+      <summary>Do I need an account?</summary>
+      <p>No. There is nothing to sign up for. A purchase gives you a licence key that you paste in
+      once, and it works on 2 iPhones.</p>
+    </details>
+    <details>
+      <summary>I am getting a new iPhone</summary>
+      <p>Free one of your two slots yourself from the link in your receipt, then paste the key on
+      the new phone.</p>
+    </details>
+    <details>
+      <summary>Does it need the internet?</summary>
+      <p>Setting a location never does. A paid key is checked when there is a connection and keeps
+      working for a month without one.</p>
+    </details>
+    <details>
+      <summary>Can I get a refund?</summary>
+      <p>If a lifetime plan does not work on your iPhone, yes, within 14 days. Monthly plans and
+      day passes are not refundable, which is why there is a free trial. See the
+      <a href="/refunds.html">refund policy</a>.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="/install.html">Install</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/help.html">Help</a>
+      <a href="/terms.html">Terms of Use</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/refunds.html">Refunds</a>
+      <a href="mailto:nanimswa@gmail.com">Contact</a>
+    </div>
+    <p>Elsewhere is built by Nimit. Not affiliated with Apple. iPhone, Find My and iOS are
+    trademarks of Apple Inc.</p>
+  </div>
+</footer>
+
+</body>
+</html>
