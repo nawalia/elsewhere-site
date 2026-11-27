@@ -21,6 +21,8 @@
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
+<div class="loader" aria-hidden="true"><div class="loader-word"><span style="--i:0">E</span><span style="--i:1">l</span><span style="--i:2">s</span><span style="--i:3">e</span><span style="--i:4">w</span><span style="--i:5">h</span><span style="--i:6">e</span><span style="--i:7">r</span><span style="--i:8">e</span><svg class="loader-pin" viewBox="0 0 26 34"><path d="M13 34C13 34 0 20 0 12.5A13 13 0 0 1 26 12.5C26 20 13 34 13 34Z" fill="#4f69f2"/><circle cx="13" cy="12.5" r="5" fill="#0a0a0c"/></svg></div></div>
+<script>if (sessionStorage.getItem("seenIntro") || matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("no-loader");</script>
 
 <header>
   <div class="wrap">
@@ -259,24 +261,18 @@
 </section>
 
 
-<!-- Effort -->
+<!-- What broke -->
 <section>
   <div class="wrap">
-    <p class="label reveal">Built the hard way</p>
-    <h2 class="reveal">Tested until<br><span class="soft">it stopped breaking.</span></h2>
-    <p class="sub reveal">Everything here was tried on a real iPhone, and everything that failed was measured, not guessed.</p>
-    <div class="counts reveal">
-      <div><div class="n" data-count="371">371</div><p>automated tests run on every change</p></div>
-      <div><div class="n" data-count="16500">16,500</div><p>lines of Rust and Swift, plus 3,400 of tests</p></div>
-      <div><div class="n" data-count="134">134</div><p>saved versions since 13 November 2026</p></div>
-      <div><div class="n" data-count="6">6</div><p>ways to connect tried on a real iPhone before one held</p></div>
-    </div>
+    <p class="label reveal">What broke along the way</p>
+    <h2 class="reveal">Tried on my own iPhone,<br><span class="soft">most of it at night.</span></h2>
+    <p class="sub reveal">Plenty didn't work before something did. Here's the short version.</p>
     <div class="tried">
-      <div class="reveal"><span class="verdict no">Refused</span><h3>Talking to iOS directly</h3><p>Tried over Wi-Fi, mobile data, the cable link and the phone's own loopback. iOS turned down every one.</p></div>
-      <div class="reveal"><span class="verdict no">Refused</span><h3>A VPN from iOS's own settings</h3><p>The phone sent the connection to itself and dropped it: both ends looked the same.</p></div>
-      <div class="reveal"><span class="verdict no">Refused</span><h3>A VPN on a free Apple account</h3><p>Apple doesn't give that permission to free accounts. The paid account does, and it's built.</p></div>
-      <div class="reveal"><span class="verdict yes">Works</span><h3>A loopback tunnel</h3><p>The connection is turned back into the phone. Measured: it connects in under a third of a second.</p></div>
-      <div class="reveal"><span class="verdict yes">Works</span><h3>The iPhone pairing with itself</h3><p>On iOS 27 the phone pairs from Settings. No Mac, ever.</p></div>
+      <div class="reveal"><span class="verdict no">Didn't work</span><h3>Talking to iOS directly</h3><p>Wi-Fi, mobile data, the cable link, the phone's own loopback. iOS turned down every one.</p></div>
+      <div class="reveal"><span class="verdict no">Didn't work</span><h3>A VPN from iOS's own settings</h3><p>The phone sent the connection to itself and dropped it, because both ends looked the same.</p></div>
+      <div class="reveal"><span class="verdict no">Didn't work</span><h3>A VPN on a free Apple account</h3><p>Apple doesn't hand out that permission for free. The paid account does, and that version is ready.</p></div>
+      <div class="reveal"><span class="verdict yes">Works</span><h3>A loopback tunnel</h3><p>The connection gets turned back into the phone. It connects in under a third of a second.</p></div>
+      <div class="reveal"><span class="verdict yes">Works</span><h3>The iPhone pairing with itself</h3><p>On iOS 27 the phone pairs from Settings. No Mac needed, ever.</p></div>
     </div>
   </div>
 </section>
@@ -285,7 +281,7 @@
 <section id="compare">
   <div class="wrap">
     <p class="label reveal">Compared</p>
-    <h2 class="reveal">Less than half<br><span class="soft">the price.</span></h2>
+    <h2 class="reveal">Costs less.<br><span class="soft">Asks for nothing.</span></h2>
     <div class="reveal" style="overflow-x:auto">
       <table class="compare">
         <thead><tr><th></th><th class="us">Elsewhere</th><th>Vanish</th><th>Tenorshare iAnyGo</th></tr></thead>
@@ -306,7 +302,7 @@
   <div class="wrap">
     <p class="label reveal">Price</p>
     <h2 class="reveal">Free in beta.<br><span class="soft">Launch prices after.</span></h2>
-    <p class="sub reveal">On sale 25 December 2026, every plan with a 7 day free trial. These prices rise on 1 February 2027. No ads, ever.</p>
+    <p class="sub reveal">On sale 25 December 2026, every plan with a 7 day free trial. You pay one price: the one shown. No ads, ever.</p>
 
     <div class="supporter reveal">
       <div>
@@ -319,13 +315,13 @@
 
     <div class="plans">
       <div class="plan reveal"><h3>Day pass</h3><div class="price">$1.99</div><p class="per">24 hours, no subscription</p>
-        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_JBkeLIo9dsUvRfbaETOjuaFZak9Wh8Ses6uoy2k2jun" data-polar-checkout data-polar-checkout-theme="dark">Buy a day</a><p class="later">Then $2.99</p></div>
+        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_JBkeLIo9dsUvRfbaETOjuaFZak9Wh8Ses6uoy2k2jun" data-polar-checkout data-polar-checkout-theme="dark">Buy a day</a><p class="later">Launch price. It goes up to $2.99 on 1 February 2027.</p></div>
       <div class="plan reveal d1"><h3>Monthly</h3><div class="price">$4.99</div><p class="per">cancel any time</p>
-        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_pMV4YDcMoU2xE7yN5cBsaX2fchmczBIRXEHKj2oNoFS" data-polar-checkout data-polar-checkout-theme="dark">Start monthly</a><p class="later">Then $6.99</p></div>
+        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_pMV4YDcMoU2xE7yN5cBsaX2fchmczBIRXEHKj2oNoFS" data-polar-checkout data-polar-checkout-theme="dark">Start monthly</a><p class="later">Launch price. New subscribers pay $6.99 from 1 February 2027.</p></div>
       <div class="plan pick reveal d2"><span class="tag">Save 50%</span><h3>Yearly</h3><div class="price">$29.99</div><p class="per">about $2.50 a month</p>
-        <a class="btn" href="https://buy.polar.sh/polar_cl_v20ux34LTlICNBrhknl8Gr4pKnVMfmvoXho6A4LFCIg" data-polar-checkout data-polar-checkout-theme="dark">Start yearly</a><p class="later">Then $44.99</p></div>
+        <a class="btn" href="https://buy.polar.sh/polar_cl_v20ux34LTlICNBrhknl8Gr4pKnVMfmvoXho6A4LFCIg" data-polar-checkout data-polar-checkout-theme="dark">Start yearly</a><p class="later">Launch price. New subscribers pay $44.99 from 1 February 2027.</p></div>
       <div class="plan reveal d3"><h3>Lifetime</h3><div class="price">$39.99</div><p class="per">pay once, every update</p>
-        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_XgtRckbNIRt8bMgqiltxsKzOz7bhcZQz6Wuxm1V85PC" data-polar-checkout data-polar-checkout-theme="dark">Buy lifetime</a><p class="later">Then $59.99</p></div>
+        <a class="btn ghost" href="https://buy.polar.sh/polar_cl_XgtRckbNIRt8bMgqiltxsKzOz7bhcZQz6Wuxm1V85PC" data-polar-checkout data-polar-checkout-theme="dark">Buy lifetime</a><p class="later">Launch price. It goes up to $59.99 on 1 February 2027.</p></div>
     </div>
 
     <div class="safe">
@@ -360,6 +356,8 @@
         <p>I'm Nimit, a Computer Science and Engineering freshman at UC Davis. I built Elsewhere end to
         end: the engine that talks to the iPhone's developer services, the app, the setup that lets an
         iPhone pair with itself, and this site. When you write in, I'm the one who reads it.</p>
+        <p class="casual">Want to learn how any of this works, or got something for me? I'm always down to talk.
+        Hit me up about pretty much anything. <a href="mailto:nanimswa@gmail.com">nanimswa@gmail.com</a></p>
       </div>
       <div class="ledger reveal d1">
         <div><span>Founder</span><b>Nimit, solo</b></div>

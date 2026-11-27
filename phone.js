@@ -232,9 +232,20 @@
 
 // The headline rises in once the fonts are ready, then sections as they arrive.
 (() => {
-  const go = () => document.body.classList.add("ready");
+  // The opening plays once per visit, then gets out of the way.
+  const loader = document.querySelector(".loader");
+  let went = false;
+  const go = () => {
+    if (went) return; went = true;
+    const reveal = () => { document.body.classList.add("ready"); if (loader) loader.classList.add("done"); };
+    if (loader && !document.documentElement.classList.contains("no-loader")) {
+      sessionStorage.setItem("seenIntro", "1");
+      setTimeout(reveal, 1150);
+      setTimeout(() => loader.remove(), 2200);
+    } else reveal();
+  };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(go));
-  setTimeout(go, 1200);
+  setTimeout(go, 900);
 
   const items = document.querySelectorAll(".reveal, .mask");
   if (!("IntersectionObserver" in window)) { items.forEach((el) => el.classList.add("in")); return; }

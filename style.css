@@ -416,3 +416,22 @@ h2 .soft { font-weight: 400; }
 .poster { position: relative; overflow: hidden; }
 .poster-pin { position: absolute; right: clamp(24px, 7vw, 120px); top: 50%; width: clamp(140px, 22vw, 320px); transform: translateY(calc(-50% + (1 - var(--p)) * 60px)) rotate(calc((1 - var(--p)) * -8deg)); }
 @media (max-width: 680px) { .poster-pin { width: 110px; top: 22%; opacity: 0.9; } }
+
+.founder .casual { margin-top: 22px; padding: 18px 20px; border-left: 2px solid var(--blue); background: var(--panel); border-radius: 0 14px 14px 0; color: var(--ink); }
+.founder .casual a { color: var(--blue-2); text-decoration: none; }
+/* Phones float on small screens too: a swipeable row that still bobs and leans. */
+@media (max-width: 680px) {
+  .mini { animation: bob 6s ease-in-out var(--d) infinite; transform: perspective(900px) rotateY(-10deg); }
+  .mini:nth-child(2) { transform: perspective(900px) rotateY(0deg) translateY(-10px); }
+  .mini:nth-child(3) { transform: perspective(900px) rotateY(10deg); }
+}
+
+/* Opening: black, the name rises in white, a pin lands, the page slides in (after jdlo). */
+.loader { position: fixed; inset: 0; z-index: 100; background: #050506; display: grid; place-items: center; transition: transform 0.9s var(--ease) 0.05s; }
+.loader-word { display: flex; align-items: flex-end; overflow: hidden; font: 600 clamp(44px, 9vw, 120px)/1 var(--sans); letter-spacing: -0.055em; color: #f4f4f1; padding: 0.1em 0.2em; }
+.loader-word span { display: inline-block; transform: translateY(110%); animation: rise 0.7s var(--ease) forwards; animation-delay: calc(var(--i) * 0.045s); }
+.loader-pin { width: 0.32em; height: 0.42em; margin: 0 0 0.62em 0.06em; transform: translateY(-140%); opacity: 0; animation: land 0.55s cubic-bezier(0.3, 1.4, 0.5, 1) 0.55s forwards; }
+@keyframes rise { to { transform: none; } }
+@keyframes land { to { transform: none; opacity: 1; } }
+.loader.done { transform: translateY(-100%); }
+.no-loader .loader { display: none; }
