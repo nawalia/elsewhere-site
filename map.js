@@ -1,4 +1,4 @@
-// The map behind elsewhere.live's home page.
+// The map behind elsewheres.live's home page.
 //
 // A made-up city, drawn from scratch every frame through a tilted camera, the
 // way the app's own map tilts when it follows a route. The pin keeps choosing
