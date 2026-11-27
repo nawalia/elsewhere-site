@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://btatbozstmkrfsfphriy.supabase.co https://polar.sh https://*.polar.sh; frame-src https://polar.sh https://*.polar.sh; form-action 'self'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Install Elsewhere on your iPhone</title>
 <meta name="description" content="How to get Elsewhere on your iPhone: where each install route stands, how to join the beta list, and the four setup steps once it is installed.">
@@ -46,6 +48,7 @@
         <h3>Elsewhere Installer for Mac</h3>
         <p>Apple silicon Macs. 11 MB. Signs Elsewhere with your own Apple ID (a free one works) and puts it on your iPhone over the cable. Your password goes only to Apple and is never saved.</p>
         <a class="btn blue" href="/download/Elsewhere-Installer-mac.zip" download>Download for Mac <span class="arrow">&darr;</span></a>
+        <p class="checksum">Version 0.2.0 beta, 27 November 2026<br>SHA-256 <code>9c4bed340c7d69e505031854c2e97ebbf4eb5850fe6641241cfcfee45a002096</code></p>
       </div>
       <ol>
         <li>Open the download, right-click <b>Install Elsewhere</b> and choose Open (the first time only).</li>
@@ -71,6 +74,29 @@
       <button class="btn blue" type="submit">Put me on the list</button>
     </form>
     <p class="join-msg" id="join-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">Your iOS version</p>
+    <h2>Pairing, two ways.</h2>
+    <div class="cards">
+      <div class="card"><p class="label"><b>iOS 27 and later</b></p><h3>On the iPhone itself</h3><p>Settings, Privacy &amp; Security, Developer Mode, "Pair with Elsewhere", type the code Elsewhere shows. No computer.</p></div>
+      <div class="card"><p class="label"><b>iOS 17 to 26</b></p><h3>One time, from a Mac</h3><p>These versions can't pair with themselves. Pair once on a Mac with the installer above (it includes the pairing tool), then open the pairing file in Elsewhere's Setup. After that the Mac is never needed.</p></div>
+    </div>
+    <p class="fine">Check yours in Settings, General, About, iOS Version. Elsewhere needs iOS 17.4 or later.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">Known iOS snags, and the fix</p>
+    <h2>If pairing fights you.</h2>
+    <details><summary>The Developer Mode switch disappeared, or pairing reset halfway</summary><p>The screen locked or the flow was cancelled mid-way. Keep the iPhone unlocked and awake until pairing finishes, then start again from Elsewhere's Setup.</p></details>
+    <details><summary>"Pairing complete", but nothing shows in Paired Devices</summary><p>An older pairing with a Mac can block a new one on iOS 27. In Settings, Developer Mode, remove the old Mac pairing, then pair again.</p></details>
+    <details><summary>Pairing times out on mobile data</summary><p>iOS only offers new pairings over Wi-Fi. Join any Wi-Fi network for the pairing step; after that, mobile data is fine.</p></details>
+    <details><summary>The place drops when the phone locks</summary><p>Leave "Keep running in the background" on in Elsewhere's Settings, and allow Elsewhere's location access when asked, so iOS doesn't pause it.</p></details>
   </div>
 </section>
 
@@ -134,7 +160,7 @@
   <div class="wrap">
     <p class="big">Elsewhere.</p>
     <div class="links">
-      <a href="/uses">Uses</a><a href="/install">Install</a><a href="/pricing">Pricing</a><a href="/help">Help</a>
+      <a href="/uses">Uses</a><a href="/install">Install</a><a href="/pricing">Pricing</a><a href="/help">Help</a><a href="/changelog">Changelog</a>
       <a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/refunds">Refunds</a><a href="mailto:nanimswa@gmail.com">Contact</a>
     </div>
     <p>Built by Nimit. Not affiliated with Apple. iPhone, Find My and iOS are trademarks of Apple Inc.</p>

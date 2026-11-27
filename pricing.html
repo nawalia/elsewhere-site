@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://btatbozstmkrfsfphriy.supabase.co https://polar.sh https://*.polar.sh; frame-src https://polar.sh https://*.polar.sh; form-action 'self'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Price. Elsewhere</title>
 <meta name="description" content="Elsewhere sets your own iPhone's location, from the iPhone itself, and holds it. Find My and every other app see the place you picked. No jailbreak, no computer after setup.">
@@ -82,7 +84,7 @@
       <a href="/uses">Uses</a>
       <a href="/install">Install</a>
       <a href="/pricing">Pricing</a>
-      <a href="/help">Help</a>
+      <a href="/help">Help</a><a href="/changelog">Changelog</a>
       <a href="/terms">Terms</a>
       <a href="/privacy">Privacy</a>
       <a href="/refunds">Refunds</a>
@@ -93,6 +95,6 @@
 </footer>
 
 <script src="/phone.js" defer></script>
-<script defer data-auto-init src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.6.0/dist/embed.global.js"></script>
+<script defer data-auto-init src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.6.0/dist/embed.global.js" integrity="sha384-e96p3bMSNUJbavzl83jvbh/LCSQfSkbXCpnzovVeJvZR7Cs9PJEEIlJnmC3khotO" crossorigin="anonymous"></script>
 </body>
 </html>

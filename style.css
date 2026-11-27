@@ -488,3 +488,7 @@ h2 .soft { font-weight: 400; }
 .download ol b { color: var(--ink); }
 .download ol a { color: var(--blue-2); }
 @media (max-width: 760px) { .download { grid-template-columns: 1fr; } }
+.checksum { margin: 18px 0 0 !important; font-size: 12.5px; color: var(--ink-3) !important; }
+.checksum code { font: 400 11px var(--mono); word-break: break-all; color: var(--ink-2); }
+.release { border-top: 1px solid var(--line-2); padding: 22px 0; }
+.release ul { margin: 10px 0 0; padding-left: 20px; color: var(--ink-2); display: grid; gap: 6px; }

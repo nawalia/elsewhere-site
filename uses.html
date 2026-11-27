@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://btatbozstmkrfsfphriy.supabase.co https://polar.sh https://*.polar.sh; frame-src https://polar.sh https://*.polar.sh; form-action 'self'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>What Elsewhere is for. Uses, simple and technical</title>
 <meta name="description" content="Every use of Elsewhere: privacy, travel, app testing, demos, research. What it was built for, how it works on the iPhone, and what it is not for.">
@@ -103,7 +105,7 @@
       <div><dt>Routes</dt><dd>Real roads from Apple Maps <span>with acceleration and braking near 2 m/s², sideways limits near 3 m/s², corners rounded within 15 m</span></dd></div>
       <div><dt>Formats</dt><dd>Coordinates, addresses, GPX <span>decimal degrees pasted from anywhere, and GPX files from other tools</span></dd></div>
       <div><dt>Engine</dt><dd>Rust, with a Swift app on top <span>the engine runs on the iPhone itself</span></dd></div>
-      <div><dt>Simulated flag</dt><dd>Left as iOS sets it <span>apps that ask whether a location is simulated get the true answer</span></dd></div>
+      <div><dt>Simulated flag</dt><dd>Left as iOS sets it <span>apps that read CLLocationSourceInformation.isSimulatedBySoftware (iOS 15 and later) get the true answer</span></dd></div>
       <div><dt>Data</dt><dd>Stays on the phone <span>places, routes and the pairing never leave it; the pairing is kept in the Keychain</span></dd></div>
     </dl>
   </div>
@@ -136,7 +138,7 @@
   <div class="wrap">
     <p class="big">Elsewhere.</p>
     <div class="links">
-      <a href="/uses">Uses</a><a href="/install">Install</a><a href="/pricing">Pricing</a><a href="/help">Help</a>
+      <a href="/uses">Uses</a><a href="/install">Install</a><a href="/pricing">Pricing</a><a href="/help">Help</a><a href="/changelog">Changelog</a>
       <a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/refunds">Refunds</a><a href="mailto:nanimswa@gmail.com">Contact</a>
     </div>
     <p>Built by Nimit. Not affiliated with Apple. iPhone, Find My and iOS are trademarks of Apple Inc.</p>
