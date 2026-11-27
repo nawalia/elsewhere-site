@@ -469,3 +469,22 @@ h2 .soft { font-weight: 400; }
   .catalogue td svg { width: 70px; height: 46px; }
 }
 @media (prefers-reduced-motion: reduce) { .ground-pin, .ground-shadow { animation: none; } }
+
+/* ---- Elsewhere, right now ---- */
+.places { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 22px; }
+.places button { font: 500 17px var(--sans); color: var(--ink); background: var(--panel); border: 1px solid var(--line-2); border-radius: 999px; padding: 14px 20px; cursor: pointer; display: inline-flex; gap: 12px; align-items: baseline; transition: border-color 0.2s, transform 0.25s var(--ease), background 0.2s; }
+.places button:hover { border-color: var(--ink-2); transform: translateY(-2px); }
+.places button.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.places time { font: 400 13px var(--mono); color: var(--ink-3); }
+.places button.on time { color: rgba(255, 255, 255, 0.8); }
+.aware { margin-top: 26px; display: grid; gap: 10px; }
+.aware a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-2); padding-bottom: 10px; font-size: 15.5px; }
+.aware a:hover { color: var(--ink); }
+
+.download { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border: 1px solid var(--line-2); border-radius: 24px; padding: clamp(24px, 3.5vw, 44px); background: var(--panel); margin-bottom: 18px; }
+.download h3 { font-size: 28px; letter-spacing: -0.03em; margin: 10px 0 10px; }
+.download p { color: var(--ink-2); font-weight: 400; margin: 0 0 24px; }
+.download ol { margin: 0; padding-left: 20px; display: grid; gap: 12px; color: var(--ink-2); font-weight: 400; }
+.download ol b { color: var(--ink); }
+.download ol a { color: var(--blue-2); }
+@media (max-width: 760px) { .download { grid-template-columns: 1fr; } }

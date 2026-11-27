@@ -38,7 +38,8 @@
   let pin = null, pinDrop = 0, ring = 0;
   let phase = "real", since = 0, phaseAt = 0;
   let touched = false;
-  const ORIGIN = { lat: 38.5449, lon: -121.7405 };
+  let ORIGIN = { lat: 38.5449, lon: -121.7405 };
+  let placeName = "";
   const toLL = (p) => (ORIGIN.lat - p.y / 111320).toFixed(5) + ", " + (ORIGIN.lon + p.x / 87120).toFixed(5);
 
   function size() {
@@ -69,7 +70,20 @@
     hint.classList.add("gone");
   }
 
+  // "Elsewhere, right now": a real place, held at its real coordinates.
+  window.elsewhereDemo = {
+    goTo(lat, lon, name) {
+      touched = true;
+      ORIGIN = { lat, lon }; placeName = name;
+      const now = performance.now();
+      view.x = view.y = 0;
+      setAt({ x: 0, y: 0 }, now);
+      document.querySelector(".intro").scrollIntoView({ behavior: still ? "auto" : "smooth" });
+    },
+  };
+
   function backToReal(now) {
+    placeName = ""; ORIGIN = { lat: 38.5449, lon: -121.7405 };
     pin = null; phase = "real"; phaseAt = now;
     aim = { x: real.x, y: real.y };
     show("Using your real location", "", null);
@@ -84,7 +98,7 @@
     if (phase === "applied" && now - phaseAt > 1300) { phase = "holding"; }
     if (phase === "holding") {
       const s = Math.floor((now - since) / 1000);
-      show("Holding", toLL(pin) + "   " + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"), "held");
+      show(placeName ? "Holding · " + placeName : "Holding", toLL(pin) + "   " + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"), "held");
     }
     view.x += (aim.x - view.x) * 0.08;
     view.y += (aim.y - view.y) * 0.08;
@@ -364,5 +378,25 @@
       requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
+  }
+})();
+
+// Live local times, from the visitor's own clock only.
+(() => {
+  const box = document.querySelector("[data-places]");
+  if (!box) return;
+  const fmt = (tz) => new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", timeZone: tz }).format(new Date());
+  const here = document.querySelector("[data-here]");
+  const tick = () => {
+    if (here) here.textContent = "It's " + fmt(Intl.DateTimeFormat().resolvedOptions().timeZone) + " where you are.";
+    for (const b of box.querySelectorAll("button")) b.querySelector("time").textContent = fmt(b.dataset.tz);
+  };
+  tick(); setInterval(tick, 30000);
+  for (const b of box.querySelectorAll("button")) {
+    b.addEventListener("click", () => {
+      for (const o of box.querySelectorAll("button")) o.classList.toggle("on", o === b);
+      const [lat, lon] = b.dataset.ll.split(",").map(Number);
+      if (window.elsewhereDemo) window.elsewhereDemo.goTo(lat, lon, b.dataset.name);
+    });
   }
 })();
