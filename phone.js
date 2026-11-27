@@ -17,19 +17,19 @@
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let W = 0, H = 0, DPR = 1;
-  let seed = 7;
-  const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 
-  // A small city seen from above, like the app's map in dark mode.
-  const roads = [], blocks = [], parks = [];
-  function build() {
-    seed = 7; roads.length = blocks.length = parks.length = 0;
-    const step = 64;
-    for (let x = -step; x < 900; x += step + (rand() * 26 - 13)) roads.push({ x1: x, y1: -50, x2: x + rand() * 30 - 15, y2: 1300, w: rand() < 0.2 ? 9 : 4 });
-    for (let y = -step; y < 1300; y += step + (rand() * 30 - 15)) roads.push({ x1: -50, y1: y, x2: 900, y2: y + rand() * 30 - 15, w: rand() < 0.2 ? 9 : 4 });
-    for (let k = 0; k < 420; k++) blocks.push({ x: rand() * 900, y: rand() * 1300, w: 14 + rand() * 30, h: 10 + rand() * 26 });
-    for (let k = 0; k < 5; k++) parks.push({ x: rand() * 800, y: rand() * 1200, r: 30 + rand() * 50 });
-  }
+  // An endless city seen from above, like the app's map in dark mode. Every
+  // street and block comes from its own grid position, so the map never ends
+  // and always looks the same in the same place.
+  const STEP = 64;
+  const hash = (a, b) => {
+    let h = (Math.imul(a, 374761393) + Math.imul(b, 668265263)) | 0;
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+  };
+  const colX = (i) => i * STEP + (hash(i, 7) - 0.5) * 22;
+  const rowY = (j) => j * STEP + (hash(11, j) - 0.5) * 22;
+  function build() {}
 
   // Map units are metres from the user's real spot; shown as coordinates near Davis.
   const real = { x: 0, y: 0 };
@@ -106,14 +106,46 @@
 
   function draw(now) {
     ctx.fillStyle = "#1b1d22"; ctx.fillRect(0, 0, W, H);
-    const o = toScreen({ x: 0, y: 0 });
-    ctx.save(); ctx.translate(o.x - 450 * 1.4, o.y - 650 * 1.4); ctx.scale(1.4, 1.4);
-    for (const p of parks) { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = "#1f3a2c"; ctx.fill(); }
-    ctx.fillStyle = "#24272e";
-    for (const b of blocks) ctx.fillRect(b.x, b.y, b.w, b.h);
-    ctx.lineCap = "round";
-    for (const r of roads) { ctx.beginPath(); ctx.moveTo(r.x1, r.y1); ctx.lineTo(r.x2, r.y2); ctx.strokeStyle = r.w > 5 ? "#4a4e5a" : "#353843"; ctx.lineWidth = r.w; ctx.stroke(); }
-    ctx.restore();
+    const Z = 1.4;
+    const left = view.x - W / 2 / Z, right = view.x + W / 2 / Z;
+    const top = view.y - H * 0.46 / Z, bottom = view.y + H * 0.54 / Z;
+    const i0 = Math.floor(left / STEP) - 1, i1 = Math.ceil(right / STEP) + 1;
+    const j0 = Math.floor(top / STEP) - 1, j1 = Math.ceil(bottom / STEP) + 1;
+    const sx = (x) => W / 2 + (x - view.x) * Z, sy = (y) => H * 0.46 + (y - view.y) * Z;
+
+    for (let i = i0; i < i1; i++) {
+      for (let j = j0; j < j1; j++) {
+        const x0 = colX(i), x1 = colX(i + 1), y0 = rowY(j), y1 = rowY(j + 1);
+        const r = hash(i * 31 + 5, j * 17 + 3);
+        if (r < 0.06) {
+          ctx.fillStyle = "#1f3a2c";
+          ctx.fillRect(sx(x0 + 4), sy(y0 + 4), (x1 - x0 - 8) * Z, (y1 - y0 - 8) * Z);
+          continue;
+        }
+        if (r > 0.985) {
+          ctx.fillStyle = "#1c2c45";
+          ctx.fillRect(sx(x0 + 4), sy(y0 + 4), (x1 - x0 - 8) * Z, (y1 - y0 - 8) * Z);
+          continue;
+        }
+        ctx.fillStyle = "#24272e";
+        const n = 1 + Math.floor(hash(i, j * 3 + 1) * 3);
+        for (let k = 0; k < n; k++) {
+          const bx = x0 + 8 + hash(i + k, j) * (x1 - x0 - 30), by = y0 + 8 + hash(i, j + k) * (y1 - y0 - 30);
+          ctx.fillRect(sx(bx), sy(by), (12 + hash(k, i + j) * 16) * Z, (10 + hash(j, k + i) * 14) * Z);
+        }
+      }
+    }
+    ctx.lineCap = "butt";
+    for (let i = i0; i < i1; i++) {
+      const major = ((i % 5) + 5) % 5 === 0;
+      ctx.beginPath(); ctx.moveTo(sx(colX(i)), 0); ctx.lineTo(sx(colX(i)), H);
+      ctx.strokeStyle = major ? "#4a4e5a" : "#353843"; ctx.lineWidth = (major ? 9 : 4) * Z / 1.4; ctx.stroke();
+    }
+    for (let j = j0; j < j1; j++) {
+      const major = ((j % 5) + 5) % 5 === 0;
+      ctx.beginPath(); ctx.moveTo(0, sy(rowY(j))); ctx.lineTo(W, sy(rowY(j)));
+      ctx.strokeStyle = major ? "#4a4e5a" : "#353843"; ctx.lineWidth = (major ? 9 : 4) * Z / 1.4; ctx.stroke();
+    }
 
     // The real location: the familiar blue dot, greyed while elsewhere.
     const d = toScreen(real);
@@ -226,4 +258,71 @@
     };
     tick(); setInterval(tick, 30000);
   }
+})();
+
+// A visit count, no cookies: only the page and the site that linked here.
+(() => {
+  try {
+    const key = "sb_publishable_En8uODvP57LWueV1FxlH_g_5PRa0jqw";
+    let referrer = null;
+    try { const r = new URL(document.referrer); if (r.host !== location.host) referrer = r.host; } catch {}
+    fetch("https://btatbozstmkrfsfphriy.supabase.co/rest/v1/page_views", {
+      method: "POST", keepalive: true,
+      headers: { apikey: key, Authorization: "Bearer " + key, "Content-Type": "application/json", Prefer: "return=minimal" },
+      body: JSON.stringify({ path: location.pathname.slice(0, 200), referrer }),
+    }).catch(() => {});
+  } catch {}
+})();
+
+// Scroll-driven depth: the floating phones turn and spread, the poster grows,
+// and the counted numbers tick up when they arrive. Plain math, no library.
+(() => {
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scenes = [...document.querySelectorAll("[data-scroll]")];
+  const minis = [...document.querySelectorAll("[data-float]")];
+  const poster = document.querySelector(".poster");
+  let px = 0;
+  addEventListener("pointermove", (e) => { px = e.clientX / innerWidth - 0.5; }, { passive: true });
+  const progress = (el) => {
+    const r = el.getBoundingClientRect();
+    return Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+  };
+  function frame() {
+    if (!still && innerWidth > 680) {
+      const stage = document.getElementById("screens");
+      if (stage) {
+        const p = progress(stage);
+        for (const m of minis) {
+          const k = Number(m.dataset.float);
+          const spread = 150 + p * 190;
+          m.style.setProperty("--x", (k * spread) + "px");
+          m.style.setProperty("--z", (k === 0 ? 60 : -40) + "px");
+          m.style.setProperty("--y", ((k === 0 ? -20 : 30) - p * 30) + "px");
+          m.style.setProperty("--ry", (k * -24 * (1 - p) + k * -8 + px * 14) + "deg");
+          m.style.setProperty("--rx", (10 * (1 - p)) + "deg");
+        }
+      }
+      if (poster) poster.style.setProperty("--p", Math.min(1, progress(poster.parentElement) * 1.6).toFixed(3));
+    }
+    requestAnimationFrame(frame);
+  }
+  if (scenes.length) requestAnimationFrame(frame);
+
+  const counters = document.querySelectorAll("[data-count]");
+  const seen = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      seen.unobserve(entry.target);
+      const el = entry.target, end = Number(el.dataset.count);
+      if (still) continue;
+      const t0 = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - t0) / 1400), eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(end * eased).toLocaleString("en-US");
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }, { threshold: 0.4 });
+  counters.forEach((el) => seen.observe(el));
 })();

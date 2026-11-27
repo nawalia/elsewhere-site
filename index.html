@@ -15,6 +15,10 @@
 <meta property="og:description" content="Pick a place on the map. Your iPhone reports it to Find My and every other app, and stays there.">
 <meta property="og:url" content="https://elsewheres.live/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://elsewheres.live/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
@@ -105,6 +109,58 @@
   </div>
 </section>
 
+
+<!-- Floating screens -->
+<section data-scroll id="screens">
+  <div class="wrap">
+    <p class="label reveal">Three things it does</p>
+    <h2 class="reveal">Hold. Move.<br><span class="soft">Check from the lock screen.</span></h2>
+    <div class="float-stage">
+      <div class="mini" style="--d:0s" data-float="-1">
+        <div class="glass"><div class="notch"></div><div class="streets"></div>
+          <div class="pill"><i></i><div>Holding<small>48.85837, 2.29448 · 2:14:08</small></div></div>
+          <svg class="mpin" viewBox="0 0 26 34" aria-hidden="true"><path d="M13 34C13 34 0 20 0 12.5A13 13 0 0 1 26 12.5C26 20 13 34 13 34Z" fill="#ef4b4b"/><circle cx="13" cy="12.5" r="5" fill="#fff"/></svg>
+          <div class="card"><b>Location set</b>Every app on this iPhone sees this place.</div>
+        </div>
+      </div>
+      <div class="mini" style="--d:-2.3s" data-float="0">
+        <div class="glass"><div class="notch"></div><div class="streets"></div>
+          <svg class="route" viewBox="0 0 100 216" preserveAspectRatio="none" aria-hidden="true"><path d="M18 190 L18 150 L48 150 L48 96 L80 96 L80 40" fill="none" stroke="#4f69f2" stroke-width="3" stroke-linejoin="round" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px #4f69f2)"/><circle r="4" fill="#fff"><animateMotion dur="9s" repeatCount="indefinite" path="M18 190 L18 150 L48 150 L48 96 L80 96 L80 40"/></circle></svg>
+          <div class="pill"><i style="background:#4f69f2"></i><div>Driving<small>42 km/h · slowing for the corner</small></div></div>
+          <div class="card"><b>Route · 3 stops</b>Real roads, real braking.<div class="bar"><i></i></div></div>
+        </div>
+      </div>
+      <div class="mini lock" style="--d:-4.6s" data-float="1">
+        <div class="glass"><div class="notch"></div>
+          <div class="date">Friday 25 December</div><div class="clock">9:41</div>
+          <div class="live"><div class="row"><b>&#9679; Location set</b><span class="t">1:02:44</span></div><div style="color:rgba(255,255,255,.45);margin-top:2px">Elsewhere</div><div class="go">Back to real</div></div>
+        </div>
+      </div>
+      <div class="float-caps">
+        <div class="reveal"><b>Hold</b>One exact place, kept for hours, set again by itself if it slips.</div>
+        <div class="reveal d1"><b>Move</b>Walk, cycle or drive a route on real roads, with real speed.</div>
+        <div class="reveal d2"><b>Lock screen</b>See it and stop it without unlocking. Black and quiet.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">How it works</p>
+    <h2 class="reveal">From your thumb<br><span class="soft">to every app.</span></h2>
+    <div class="rule reveal"><span>Elsewhere</span><span>Every app</span></div>
+    <div class="blueprint reveal">
+      <div class="node"><span class="label">01</span><h3>Elsewhere</h3><p>You pick a place. The app sends it, on the phone.</p></div>
+      <div class="node"><span class="label">02</span><h3>Loopback</h3><p>The connection is turned back into the phone, so iOS accepts it.</p></div>
+      <div class="node"><span class="label">03</span><h3>Developer service</h3><p>Apple's own location simulation takes the place.</p></div>
+      <div class="node"><span class="label">04</span><h3>Core Location</h3><p>iOS now reports that place as where the phone is.</p></div>
+      <div class="node apps"><span class="label">05</span><span>Find My</span><span>Maps</span><span>Weather</span><span>Every app</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- 4. Spec sheet -->
 <section>
   <div class="wrap">
@@ -169,6 +225,21 @@
   </div>
 </section>
 
+
+<!-- Poster -->
+<div class="poster-wrap" data-scroll>
+  <div class="poster">
+    <div class="top"><span>Elsewhere</span><span>25 · 12 · 2026</span></div>
+    <svg class="poster-pin" viewBox="0 0 260 340" aria-hidden="true"><path d="M110 318C110 318 8 196 8 120A102 102 0 1 1 212 120C212 196 110 318 110 318Z" fill="none" stroke="#a9a9a4" stroke-width="2"/><path d="M150 338C150 338 48 216 48 140A102 102 0 1 1 252 140C252 216 150 338 150 338Z" fill="#0a0a0c"/><circle cx="150" cy="138" r="36" fill="#d8d8d3"/></svg>
+    <p class="giant">Exact.<br>Held.<br><span>Yours.</span></p>
+    <div class="foot">
+      <div><b>Exact</b>The coordinates you chose, to the metre.</div>
+      <div><b>Held</b>Kept for hours, reconnected by itself.</div>
+      <div><b>Yours</b>No account. Nothing about you leaves the phone.</div>
+    </div>
+  </div>
+</div>
+
 <!-- 6. Uses -->
 <section>
   <div class="wrap">
@@ -184,6 +255,29 @@
       <div class="use reveal d2"><span class="label">Research</span><h3>See how apps react</h3><p>Study what apps do with location and how they treat a simulated one.</p></div>
     </div>
     <p style="margin-top:36px" class="reveal"><a class="btn ghost" href="/uses.html">Every use, explained <span class="arrow">&rarr;</span></a></p>
+  </div>
+</section>
+
+
+<!-- Effort -->
+<section>
+  <div class="wrap">
+    <p class="label reveal">Built the hard way</p>
+    <h2 class="reveal">Tested until<br><span class="soft">it stopped breaking.</span></h2>
+    <p class="sub reveal">Everything here was tried on a real iPhone, and everything that failed was measured, not guessed.</p>
+    <div class="counts reveal">
+      <div><div class="n" data-count="371">371</div><p>automated tests run on every change</p></div>
+      <div><div class="n" data-count="16500">16,500</div><p>lines of Rust and Swift, plus 3,400 of tests</p></div>
+      <div><div class="n" data-count="134">134</div><p>saved versions since 13 November 2026</p></div>
+      <div><div class="n" data-count="6">6</div><p>ways to connect tried on a real iPhone before one held</p></div>
+    </div>
+    <div class="tried">
+      <div class="reveal"><span class="verdict no">Refused</span><h3>Talking to iOS directly</h3><p>Tried over Wi-Fi, mobile data, the cable link and the phone's own loopback. iOS turned down every one.</p></div>
+      <div class="reveal"><span class="verdict no">Refused</span><h3>A VPN from iOS's own settings</h3><p>The phone sent the connection to itself and dropped it: both ends looked the same.</p></div>
+      <div class="reveal"><span class="verdict no">Refused</span><h3>A VPN on a free Apple account</h3><p>Apple doesn't give that permission to free accounts. The paid account does, and it's built.</p></div>
+      <div class="reveal"><span class="verdict yes">Works</span><h3>A loopback tunnel</h3><p>The connection is turned back into the phone. Measured: it connects in under a third of a second.</p></div>
+      <div class="reveal"><span class="verdict yes">Works</span><h3>The iPhone pairing with itself</h3><p>On iOS 27 the phone pairs from Settings. No Mac, ever.</p></div>
+    </div>
   </div>
 </section>
 

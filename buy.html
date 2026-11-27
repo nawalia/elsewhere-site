@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Checkout. Elsewhere</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0a0a0c">
+</head>
+<body class="page">
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <span class="mark"><svg viewBox="156 126 88 132" aria-hidden="true"><path d="M200,252 C200,252 164,196 164,170 A36,36 0 1 1 236,170 C236,196 200,252 200,252 Z" fill="#fff"/><circle cx="200" cy="168" r="13" fill="#4f69f2"/></svg></span>
+      Elsewhere
+    </a>
+    <nav><a href="/#price">All plans</a></nav>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap" style="max-width:720px">
+    <p class="label">Checkout</p>
+    <h1><span class="line"><span id="plan-name">Elsewhere</span></span></h1>
+    <p class="sub" id="plan-line">Opening a secure checkout…</p>
+    <div class="cta-row">
+      <a class="btn blue" id="pay" href="/#price">Continue to payment <span class="arrow">&rarr;</span></a>
+      <a class="btn ghost" href="/#price">See every plan</a>
+    </div>
+    <div class="safe" style="grid-template-columns:1fr;gap:18px;margin-top:56px">
+      <div><b>You stay on Elsewhere's site</b>The checkout opens on top of this page. Nothing redirects you anywhere else.</div>
+      <div><b>Polar takes the payment</b>Polar is the payment company behind thousands of software products. They are the seller on your receipt, handle tax and refunds, and Elsewhere never sees your card.</div>
+      <div><b>Your key arrives at once</b>On the next screen and by email. Paste it into Elsewhere, Settings, Your plan. Works on 2 iPhones.</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.6.0/dist/embed.global.js"></script>
+<script>
+(() => {
+  const plans = {
+    supporter: ["Early supporter", "$19.99, lifetime, first 20 people while the beta lasts.", "polar_cl_mGgvTOJkTlASKaRNgVCj4fItgFw7t5w8UaeTP4J34Kl"],
+    lifetime: ["Lifetime", "$39.99 once. Every update included.", "polar_cl_XgtRckbNIRt8bMgqiltxsKzOz7bhcZQz6Wuxm1V85PC"],
+    yearly: ["Yearly", "$29.99 a year, about $2.50 a month.", "polar_cl_v20ux34LTlICNBrhknl8Gr4pKnVMfmvoXho6A4LFCIg"],
+    monthly: ["Monthly", "$4.99 a month, cancel any time.", "polar_cl_pMV4YDcMoU2xE7yN5cBsaX2fchmczBIRXEHKj2oNoFS"],
+    day: ["Day pass", "$1.99 for 24 hours. No subscription.", "polar_cl_JBkeLIo9dsUvRfbaETOjuaFZak9Wh8Ses6uoy2k2jun"],
+  };
+  const choice = plans[new URLSearchParams(location.search).get("plan")] || plans.yearly;
+  const [name, line, id] = choice;
+  const link = "https://buy.polar.sh/" + id;
+  document.title = name + ". Elsewhere";
+  document.getElementById("plan-name").textContent = name;
+  document.getElementById("plan-line").textContent = line;
+  const pay = document.getElementById("pay");
+  pay.href = link;
+
+  const open = async () => {
+    const embed = window.Polar && window.Polar.EmbedCheckout;
+    if (!embed) return false;
+    try { await embed.create(link, { theme: "dark" }); return true; }
+    catch { try { await embed.create(link, "dark"); return true; } catch { return false; } }
+  };
+  pay.addEventListener("click", async (e) => { e.preventDefault(); if (!(await open())) location.href = link; });
+  // Straight into the checkout; the button stays in case it is closed.
+  open().then((ok) => { if (!ok) document.getElementById("plan-line").textContent = line + " Tap Continue to pay."; });
+})();
+</script>
+</body>
+</html>

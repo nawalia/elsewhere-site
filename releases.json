@@ -1,0 +1,10 @@
+{
+  "version": "0.2.0",
+  "minimum": null,
+  "notes": [
+    "Set again after a hold ends or after Stop",
+    "Ask Nims inside the app",
+    "Launch countdown during the beta"
+  ],
+  "url": "https://elsewheres.live/install.html"
+}

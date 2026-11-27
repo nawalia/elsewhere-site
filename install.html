@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="/style.css">
 <link rel="icon" href="/mark.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0a0a0c">
+<meta property="og:image" content="https://elsewheres.live/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="page">
 
@@ -37,6 +41,7 @@
     Leave your email and you will hear the day you can install it. Nothing else is sent to it.</p>
     <form class="join" id="join">
       <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <button class="btn blue" type="submit">Put me on the list</button>
     </form>
     <p class="join-msg" id="join-msg" aria-live="polite"></p>
@@ -114,10 +119,17 @@
 <script src="/phone.js" defer></script>
 <script>
 // The beta list goes to the same inbox as questions asked inside the app.
+const opened = performance.now();
 document.getElementById("join").addEventListener("submit", async (event) => {
   event.preventDefault();
   const form = event.target, msg = document.getElementById("join-msg");
   const email = form.email.value.trim();
+  // Spam guard: bots fill the hidden field or submit instantly; people don't sign up many times.
+  const tries = Number(localStorage.getItem("elsewhere-list") || 0);
+  if (form.website.value || performance.now() - opened < 2500 || tries >= 3) {
+    msg.textContent = tries >= 3 ? "You're already on the list." : "Please try again.";
+    return;
+  }
   const letters = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
   const pick = new Uint32Array(6); crypto.getRandomValues(pick);
   const ticket = "LS-" + [...pick].map((n) => letters[n % letters.length]).join("");
@@ -131,6 +143,7 @@ document.getElementById("join").addEventListener("submit", async (event) => {
       body: JSON.stringify({ ticket, secret: crypto.randomUUID(), email, message: "Beta list: please tell me when I can install Elsewhere." }),
     });
     if (!res.ok) throw new Error(res.status);
+    localStorage.setItem("elsewhere-list", String(tries + 1));
     msg.textContent = "You're on the list. You'll hear the day you can install.";
     form.reset();
   } catch {
