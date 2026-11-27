@@ -298,13 +298,25 @@
 (() => {
   try {
     const key = "sb_publishable_En8uODvP57LWueV1FxlH_g_5PRa0jqw";
+    // Which post or link sent them: elsewheres.live/?ref=tiktok1 (no cookies, nothing personal).
+    const source = () => { const q = new URLSearchParams(location.search); const r = q.get("ref") || q.get("utm_source"); return r ? "?ref=" + r.replace(/[^\w-]/g, "").slice(0, 30) : ""; };
     let referrer = null;
     try { const r = new URL(document.referrer); if (r.host !== location.host) referrer = r.host; } catch {}
     fetch("https://btatbozstmkrfsfphriy.supabase.co/rest/v1/page_views", {
       method: "POST", keepalive: true,
       headers: { apikey: key, Authorization: "Bearer " + key, "Content-Type": "application/json", Prefer: "return=minimal" },
-      body: JSON.stringify({ path: location.pathname.slice(0, 200), referrer }),
+      body: JSON.stringify({ path: (location.pathname + source()).slice(0, 200), referrer }),
     }).catch(() => {});
+    // Downloads count as their own event, so visits and downloads can be compared per source.
+    for (const a of document.querySelectorAll('a[href$=".zip"]')) {
+      a.addEventListener("click", () => {
+        fetch("https://btatbozstmkrfsfphriy.supabase.co/rest/v1/page_views", {
+          method: "POST", keepalive: true,
+          headers: { apikey: key, Authorization: "Bearer " + key, "Content-Type": "application/json", Prefer: "return=minimal" },
+          body: JSON.stringify({ path: ("/event/download-mac" + source()).slice(0, 200), referrer }),
+        }).catch(() => {});
+      });
+    }
   } catch {}
 })();
 
