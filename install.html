@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Install Elsewhere on your iPhone</title>
-<meta name="description" content="How to put Elsewhere on your iPhone and set a location: Developer Mode, pairing the phone with itself, the connection helper, then pick a place.">
+<meta name="description" content="How to get Elsewhere on your iPhone: where each install route stands, how to join the beta list, and the four setup steps once it is installed.">
 <link rel="canonical" href="https://elsewheres.live/install.html">
 <link rel="stylesheet" href="/style.css">
 <link rel="icon" href="/mark.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0a0a0c">
 </head>
 <body class="page">
 
@@ -18,125 +19,126 @@
       Elsewhere
     </a>
     <nav>
+      <a href="/uses.html" class="hide-small">Uses</a>
+      <a href="/#price" class="hide-small">Price</a>
       <a href="/install.html">Install</a>
-      <a href="/pricing.html">Pricing</a>
-      <a href="/help.html" class="hide-small">Help</a>
+      <a class="btn small blue" href="/#price">Get it</a>
     </nav>
   </div>
 </header>
+
 <main>
 
-<section class="plain" style="padding-top:56px">
+<section>
   <div class="wrap">
-    <h1>Install Elsewhere</h1>
-    <p class="sub">You need an iPhone on iOS 17.4 or later. Setting it up takes about five minutes
-    and you only do it once. Elsewhere checks each step for you and tells you if something is
-    missing.</p>
-
-    <p class="note"><strong>Elsewhere is in beta and the download is not open yet.</strong>
-    Write to <a href="mailto:nanimswa@gmail.com">nanimswa@gmail.com</a> and Nims will send you the
-    beta. It goes on sale on 25 December 2026.</p>
+    <p class="label">Install</p>
+    <h1><span class="line"><span>Get on the list.</span></span></h1>
+    <p class="sub">Elsewhere is in beta and the public download opens with the launch on 25 December 2026.
+    Leave your email and you will hear the day you can install it. Nothing else is sent to it.</p>
+    <form class="join" id="join">
+      <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email">
+      <button class="btn blue" type="submit">Put me on the list</button>
+    </form>
+    <p class="join-msg" id="join-msg" aria-live="polite"></p>
+    <p class="fine"><span class="count" data-countdown></span></p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>Setting it up</h2>
+    <p class="label">Where installing stands</p>
+    <h2>Three ways in.</h2>
+    <p class="sub">Apple only lets apps outside the App Store onto an iPhone in a few ways. These are the
+    three Elsewhere is building, and how far along each one is.</p>
+    <div class="cards">
+      <div class="card reveal">
+        <p class="label"><b>01</b> &nbsp;Straight from this site</p>
+        <h3>iPhone only, nothing else</h3>
+        <div class="progress"><i style="width:35%"></i></div>
+        <p>Tap install in Safari and Elsewhere arrives, with its own connection built in, so no helper app either. The built-in connection is done; the install link needs Elsewhere's Apple developer account, which comes before launch.</p>
+      </div>
+      <div class="card reveal d1">
+        <p class="label"><b>02</b> &nbsp;From a Mac or PC</p>
+        <h3>Your own Apple ID, a cable, once</h3>
+        <div class="progress"><i style="width:10%"></i></div>
+        <p>A small desktop app installs Elsewhere signed with your own free Apple ID, and Elsewhere then keeps itself installed from the phone every week. Being built.</p>
+      </div>
+      <div class="card reveal d2">
+        <p class="label"><b>03</b> &nbsp;Beta testers</p>
+        <h3>Installed with Nims</h3>
+        <div class="progress"><i style="width:100%"></i></div>
+        <p>Works today, for the small group testing the beta. Join the list above and you are first in line when one of the two routes above opens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">Once it is installed</p>
+    <h2>Setting it up.</h2>
+    <p class="sub">About five minutes, once. Elsewhere checks each step for you.</p>
     <ol class="steps">
-      <li><div><h3>Turn on Developer Mode</h3>
-        <p>On the iPhone: Settings, Privacy &amp; Security, scroll to the bottom, Developer Mode,
-        switch it on. The phone restarts once and asks you to confirm after it comes back. This is
-        a switch Apple puts in iOS. It does not jailbreak anything and you can turn it off again
-        whenever you want.</p></div></li>
-      <li><div><h3>Pair the iPhone with itself</h3>
-        <p>Open Elsewhere and go to Setup. It shows a six digit code. In Settings, Privacy &amp;
-        Security, Developer Mode, tap "Pair with Elsewhere" and type the code. This is the same
-        pairing a Mac does when you plug a phone in, except there is no Mac and nothing leaves the
-        phone.</p></div></li>
-      <li><div><h3>Turn on the connection helper</h3>
-        <p>Apple's developer service inside iOS only accepts connections that look as if they come
-        from another device, so something has to route Elsewhere's connection back into the phone.
-        Today that is a small free app called LocalDevVPN, which adds a loopback VPN. Elsewhere has
-        a button that opens it. It carries nothing to the internet: it only turns the phone's
-        connection back on itself.</p></div></li>
-      <li><div><h3>Pick a place and press Set</h3>
-        <p>Tap the map, search for an address, or paste coordinates. Press Set, wait for
-        "Applied", then open Find My: the phone is there. It stays there until you press Stop or
-        restart the phone.</p></div></li>
+      <li class="reveal"><h3>Developer Mode</h3><p>Settings, Privacy &amp; Security, Developer Mode. The phone restarts once. Not a jailbreak, and you can turn it off.</p></li>
+      <li class="reveal d1"><h3>Pair with itself</h3><p>Elsewhere shows a code. Type it into Settings, Developer Mode, "Pair with Elsewhere".</p></li>
+      <li class="reveal d2"><h3>The connection</h3><p>Switch on the connection Elsewhere asks for. It loops the phone's connection back into itself and sends nothing to the internet.</p></li>
+      <li class="reveal d3"><h3>Pick a place</h3><p>Tap the map and press Set. Open Find My: you are there.</p></li>
     </ol>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>Ways to install, and where they stand</h2>
-    <p class="sub">Being honest about what works today and what is being built.</p>
-    <div class="cards">
-      <div class="card">
-        <h3>From the iPhone, with the helper</h3>
-        <p><strong>Works today.</strong> Elsewhere plus the free connection helper, both on the
-        phone. No computer once you are set up.</p>
-      </div>
-      <div class="card">
-        <h3>From a Mac or PC over the cable</h3>
-        <p><strong>Being built.</strong> A small desktop app that installs Elsewhere with your own
-        Apple ID and keeps it installed, for people who would rather not add the helper app.</p>
-      </div>
-      <div class="card">
-        <h3>Straight from this website</h3>
-        <p><strong>Being built.</strong> Once Elsewhere has its own Apple developer account you
-        will install it from Safari, and the connection will be handled inside Elsewhere itself.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>If something does not work</h2>
-    <details>
-      <summary>Setup says it cannot connect</summary>
-      <p>Nine times out of ten the connection helper is switched off. Check Settings, VPN, and make
-      sure it is on. Only one VPN can be on at a time, so another VPN will stop Elsewhere
-      connecting.</p>
-    </details>
-    <details>
-      <summary>"Pair with Elsewhere" does not appear in Settings</summary>
-      <p>Developer Mode has to be on first, and Elsewhere has to be open and on the Setup screen
-      while you look, because that is when it offers the pairing.</p>
-    </details>
-    <details>
-      <summary>The location went back to where I really am</summary>
-      <p>iOS drops a simulated location when the connection closes. Elsewhere holds the connection
-      open and sets it again if it slips, so this normally means the helper was switched off or the
-      phone restarted. Restarting always returns the phone to its real location, on purpose.</p>
-    </details>
-    <details>
-      <summary>An app still shows my real location</summary>
-      <p>A handful of apps ask iOS whether a location was simulated, and iOS tells them. Elsewhere
-      does not hide that and will not. Those apps will keep using their own answer.</p>
-    </details>
-    <p style="margin-top:24px">Still stuck? Write to
-    <a href="mailto:nanimswa@gmail.com">nanimswa@gmail.com</a> and say which step you are on.</p>
+    <p class="label">If something goes wrong</p>
+    <h2>Fixes.</h2>
+    <details><summary>Setup says it cannot connect</summary><p>The connection is almost always switched off. Check Settings, VPN. Only one VPN can be on at a time.</p></details>
+    <details><summary>"Pair with Elsewhere" is missing in Settings</summary><p>Developer Mode has to be on, and Elsewhere has to be open on its Setup screen while you look.</p></details>
+    <details><summary>My real location came back</summary><p>The phone restarted or the connection was switched off. Open Elsewhere and tap Set again.</p></details>
+    <details><summary>Still stuck</summary><p>Open Elsewhere, Settings, Help centre, Ask Nims, and say which step you are on. Or write to <a href="mailto:nanimswa@gmail.com" style="color:var(--blue-2)">nanimswa@gmail.com</a>.</p></details>
   </div>
 </section>
 
 </main>
+
 <footer>
   <div class="wrap">
+    <p class="big">Elsewhere.</p>
     <div class="links">
-      <a href="/install.html">Install</a>
-      <a href="/pricing.html">Pricing</a>
-      <a href="/help.html">Help</a>
-      <a href="/terms.html">Terms of Use</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/refunds.html">Refunds</a>
-      <a href="mailto:nanimswa@gmail.com">Contact</a>
+      <a href="/uses.html">Uses</a><a href="/install.html">Install</a><a href="/pricing.html">Pricing</a><a href="/help.html">Help</a>
+      <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a><a href="/refunds.html">Refunds</a><a href="mailto:nanimswa@gmail.com">Contact</a>
     </div>
-    <p>Elsewhere is built by Nimit. Not affiliated with Apple. iPhone, Find My and iOS are
-    trademarks of Apple Inc.</p>
+    <p>Built by Nimit. Not affiliated with Apple. iPhone, Find My and iOS are trademarks of Apple Inc.</p>
   </div>
 </footer>
 
+<script src="/phone.js" defer></script>
+<script>
+// The beta list goes to the same inbox as questions asked inside the app.
+document.getElementById("join").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const form = event.target, msg = document.getElementById("join-msg");
+  const email = form.email.value.trim();
+  const letters = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
+  const pick = new Uint32Array(6); crypto.getRandomValues(pick);
+  const ticket = "LS-" + [...pick].map((n) => letters[n % letters.length]).join("");
+  const key = "sb_publishable_En8uODvP57LWueV1FxlH_g_5PRa0jqw";
+  form.querySelector("button").disabled = true;
+  msg.textContent = "Adding you…";
+  try {
+    const res = await fetch("https://btatbozstmkrfsfphriy.supabase.co/rest/v1/support_tickets", {
+      method: "POST",
+      headers: { apikey: key, Authorization: "Bearer " + key, "Content-Type": "application/json", Prefer: "return=minimal" },
+      body: JSON.stringify({ ticket, secret: crypto.randomUUID(), email, message: "Beta list: please tell me when I can install Elsewhere." }),
+    });
+    if (!res.ok) throw new Error(res.status);
+    msg.textContent = "You're on the list. You'll hear the day you can install.";
+    form.reset();
+  } catch {
+    msg.textContent = "That didn't go through. Try again, or write to nanimswa@gmail.com.";
+  } finally {
+    form.querySelector("button").disabled = false;
+  }
+});
+</script>
 </body>
 </html>

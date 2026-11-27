@@ -69,13 +69,14 @@
 
   function resize() {
     DPR = Math.min(window.devicePixelRatio || 1, 2);
-    W = window.innerWidth; H = window.innerHeight;
+    const box = canvas.parentElement.getBoundingClientRect();
+    W = box.width; H = box.height;
     canvas.width = W * DPR; canvas.height = H * DPR;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     const narrow = W < 760;
-    anchorX = narrow ? W * 0.5 : W * 0.66;
-    anchorY = narrow ? H * 0.62 : H * 0.56;
+    anchorX = narrow ? W * 0.5 : W * 0.68;
+    anchorY = narrow ? H * 0.42 : H * 0.55;
     cam.zoom = narrow ? 0.62 : Math.max(0.75, Math.min(1.25, W / 1400));
   }
 
@@ -367,16 +368,8 @@
   }, { passive: true });
   document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
 
-  // As the page scrolls the map sinks back, and stops once it can't be seen.
-  const header = document.querySelector("header");
-  const onScroll = () => {
-    const k = Math.min(1, window.scrollY / (H * 0.9));
-    canvas.style.opacity = String(1 - k * 0.85);
-    canvas.style.transform = `scale(${1 + k * 0.08})`;
-    if (header) header.classList.toggle("solid", window.scrollY > 40);
-    if (window.scrollY > H * 1.4) stop(); else start();
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
+  // Runs only while its section is on screen.
+  new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop())).observe(canvas.parentElement);
 
   resize();
   if (still) {
@@ -385,20 +378,6 @@
     for (const { e } of links[at]) edges[e].lit = 0.8;
     draw(4000);
     say("Holding", toLatLon(nodes[at]));
-  } else {
-    start();
   }
-  onScroll();
 })();
 
-// Sections fade up as they arrive.
-(() => {
-  const items = document.querySelectorAll(".reveal");
-  if (!("IntersectionObserver" in window)) { items.forEach((el) => el.classList.add("in")); return; }
-  const seen = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) { entry.target.classList.add("in"); seen.unobserve(entry.target); }
-    }
-  }, { rootMargin: "0px 0px -10% 0px" });
-  items.forEach((el) => seen.observe(el));
-})();
