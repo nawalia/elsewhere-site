@@ -70,20 +70,26 @@
     hint.classList.add("gone");
   }
 
-  // "Elsewhere, right now": a real place, held at its real coordinates.
+  // "Elsewhere, right now": fly to a real place and hold it at its real
+  // coordinates. The map travels there (it is endless), the blue dot of the
+  // real location is left behind, and Antarctica gets an icy map.
+  let palette = "city";
   window.elsewhereDemo = {
     goTo(lat, lon, name) {
       touched = true;
-      ORIGIN = { lat, lon }; placeName = name;
-      const now = performance.now();
-      view.x = view.y = 0;
-      setAt({ x: 0, y: 0 }, now);
-      document.querySelector(".intro").scrollIntoView({ behavior: still ? "auto" : "smooth" });
+      hint.classList.add("gone");
+      const far = { x: view.x + 2200 + Math.random() * 600, y: view.y - 1600 - Math.random() * 600 };
+      ORIGIN = { lat: lat + far.y / 111320, lon: lon - far.x / 87120 };
+      placeName = name;
+      palette = lat < -60 ? "ice" : "city";
+      setAt(far, performance.now());
+      const phone = document.querySelector(".iphone");
+      (phone || document.querySelector(".intro")).scrollIntoView({ behavior: still ? "auto" : "smooth", block: "center" });
     },
   };
 
   function backToReal(now) {
-    placeName = ""; ORIGIN = { lat: 38.5449, lon: -121.7405 };
+    placeName = ""; palette = "city"; ORIGIN = { lat: 38.5449, lon: -121.7405 };
     pin = null; phase = "real"; phaseAt = now;
     aim = { x: real.x, y: real.y };
     show("Using your real location", "", null);
@@ -100,8 +106,9 @@
       const s = Math.floor((now - since) / 1000);
       show(placeName ? "Holding · " + placeName : "Holding", toLL(pin) + "   " + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"), "held");
     }
-    view.x += (aim.x - view.x) * 0.08;
-    view.y += (aim.y - view.y) * 0.08;
+    const k = Math.hypot(aim.x - view.x, aim.y - view.y) > 600 ? 0.035 : 0.08;
+    view.x += (aim.x - view.x) * k;
+    view.y += (aim.y - view.y) * k;
   }
 
   function drawPin(x, y, s, alpha) {
@@ -119,7 +126,8 @@
   }
 
   function draw(now) {
-    ctx.fillStyle = "#1b1d22"; ctx.fillRect(0, 0, W, H);
+    const ice = palette === "ice";
+    ctx.fillStyle = ice ? "#c9d6e2" : "#1b1d22"; ctx.fillRect(0, 0, W, H);
     const Z = 1.4;
     const left = view.x - W / 2 / Z, right = view.x + W / 2 / Z;
     const top = view.y - H * 0.46 / Z, bottom = view.y + H * 0.54 / Z;
@@ -131,16 +139,17 @@
       for (let j = j0; j < j1; j++) {
         const x0 = colX(i), x1 = colX(i + 1), y0 = rowY(j), y1 = rowY(j + 1);
         const r = hash(i * 31 + 5, j * 17 + 3);
-        if (r < 0.06) {
+        if (!ice && r < 0.06) {
           ctx.fillStyle = "#1f3a2c";
           ctx.fillRect(sx(x0 + 4), sy(y0 + 4), (x1 - x0 - 8) * Z, (y1 - y0 - 8) * Z);
           continue;
         }
-        if (r > 0.985) {
+        if (!ice && r > 0.985) {
           ctx.fillStyle = "#1c2c45";
           ctx.fillRect(sx(x0 + 4), sy(y0 + 4), (x1 - x0 - 8) * Z, (y1 - y0 - 8) * Z);
           continue;
         }
+        if (ice) continue;   // the ice is mostly empty
         ctx.fillStyle = "#24272e";
         const n = 1 + Math.floor(hash(i, j * 3 + 1) * 3);
         for (let k = 0; k < n; k++) {
@@ -153,12 +162,12 @@
     for (let i = i0; i < i1; i++) {
       const major = ((i % 5) + 5) % 5 === 0;
       ctx.beginPath(); ctx.moveTo(sx(colX(i)), 0); ctx.lineTo(sx(colX(i)), H);
-      ctx.strokeStyle = major ? "#4a4e5a" : "#353843"; ctx.lineWidth = (major ? 9 : 4) * Z / 1.4; ctx.stroke();
+      ctx.strokeStyle = ice ? (major ? "#eef3f8" : "rgba(238,243,248,0)") : (major ? "#4a4e5a" : "#353843"); ctx.lineWidth = (major ? 9 : 4) * Z / 1.4; ctx.stroke();
     }
     for (let j = j0; j < j1; j++) {
       const major = ((j % 5) + 5) % 5 === 0;
       ctx.beginPath(); ctx.moveTo(0, sy(rowY(j))); ctx.lineTo(W, sy(rowY(j)));
-      ctx.strokeStyle = major ? "#4a4e5a" : "#353843"; ctx.lineWidth = (major ? 9 : 4) * Z / 1.4; ctx.stroke();
+      ctx.strokeStyle = ice ? (major ? "#eef3f8" : "rgba(238,243,248,0)") : (major ? "#4a4e5a" : "#353843"); ctx.lineWidth = (major ? 9 : 4) * Z / 1.4; ctx.stroke();
     }
 
     // The real location: the familiar blue dot, greyed while elsewhere.
