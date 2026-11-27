@@ -337,3 +337,32 @@
   }, { threshold: 0.4 });
   counters.forEach((el) => seen.observe(el));
 })();
+
+// Section links scroll smoothly and leave the address clean (no '#').
+(() => {
+  for (const link of document.querySelectorAll("[data-section]")) {
+    link.addEventListener("click", (e) => {
+      const target = document.getElementById(link.dataset.section);
+      if (!target) return;                         // not on this page: follow the link
+      e.preventDefault();
+      target.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    });
+  }
+  // Arriving from another page at /#founder: scroll there, then tidy the address.
+  if (location.hash) {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target) setTimeout(() => target.scrollIntoView(), 50);
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+  // The aerial photo settles as it scrolls past.
+  const ground = document.querySelector("[data-ground]");
+  if (ground && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const tick = () => {
+      const r = ground.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+      ground.style.setProperty("--g", p.toFixed(3));
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+})();

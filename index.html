@@ -31,11 +31,11 @@
       Elsewhere
     </a>
     <nav>
-      <a href="/uses.html" class="hide-small">Uses</a>
-      <a href="#price" class="hide-small">Price</a>
-      <a href="#founder" class="hide-small">Founder</a>
-      <a href="/install.html">Install</a>
-      <a class="btn small blue" href="#price">Get it</a>
+      <a href="/uses" class="hide-small">Uses</a>
+      <a href="/pricing" data-section="price" class="hide-small">Price</a>
+      <a href="/#founder" data-section="founder" class="hide-small">Founder</a>
+      <a href="/install">Install</a>
+      <a class="btn small blue" href="/pricing" data-section="price">Get it</a>
     </nav>
   </div>
 </header>
@@ -50,8 +50,8 @@
       every app on the phone sees it, and it stays until you change it. Set up and used on the iPhone
       itself. No jailbreak.</p>
       <div class="cta-row fade d2">
-        <a class="btn" href="#price">Get Elsewhere <span class="arrow">&rarr;</span></a>
-        <a class="btn ghost" href="/uses.html">What people use it for</a>
+        <a class="btn" href="/pricing" data-section="price">Get Elsewhere <span class="arrow">&rarr;</span></a>
+        <a class="btn ghost" href="/uses">What people use it for</a>
       </div>
       <p class="fine fade d3">Free while in beta. <span class="count" data-countdown></span></p>
     </div>
@@ -112,41 +112,6 @@
 </section>
 
 
-<!-- Floating screens -->
-<section data-scroll id="screens">
-  <div class="wrap">
-    <p class="label reveal">Three things it does</p>
-    <h2 class="reveal">Hold. Move.<br><span class="soft">Check from the lock screen.</span></h2>
-    <div class="float-stage">
-      <div class="mini" style="--d:0s" data-float="-1">
-        <div class="glass"><div class="notch"></div><div class="streets"></div>
-          <div class="pill"><i></i><div>Holding<small>48.85837, 2.29448 · 2:14:08</small></div></div>
-          <svg class="mpin" viewBox="0 0 26 34" aria-hidden="true"><path d="M13 34C13 34 0 20 0 12.5A13 13 0 0 1 26 12.5C26 20 13 34 13 34Z" fill="#ef4b4b"/><circle cx="13" cy="12.5" r="5" fill="#fff"/></svg>
-          <div class="card"><b>Location set</b>Every app on this iPhone sees this place.</div>
-        </div>
-      </div>
-      <div class="mini" style="--d:-2.3s" data-float="0">
-        <div class="glass"><div class="notch"></div><div class="streets"></div>
-          <svg class="route" viewBox="0 0 100 216" preserveAspectRatio="none" aria-hidden="true"><path d="M18 190 L18 150 L48 150 L48 96 L80 96 L80 40" fill="none" stroke="#4f69f2" stroke-width="3" stroke-linejoin="round" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px #4f69f2)"/><circle r="4" fill="#fff"><animateMotion dur="9s" repeatCount="indefinite" path="M18 190 L18 150 L48 150 L48 96 L80 96 L80 40"/></circle></svg>
-          <div class="pill"><i style="background:#4f69f2"></i><div>Driving<small>42 km/h · slowing for the corner</small></div></div>
-          <div class="card"><b>Route · 3 stops</b>Real roads, real braking.<div class="bar"><i></i></div></div>
-        </div>
-      </div>
-      <div class="mini lock" style="--d:-4.6s" data-float="1">
-        <div class="glass"><div class="notch"></div>
-          <div class="date">Friday 25 December</div><div class="clock">9:41</div>
-          <div class="live"><div class="row"><b>&#9679; Location set</b><span class="t">1:02:44</span></div><div style="color:rgba(255,255,255,.45);margin-top:2px">Elsewhere</div><div class="go">Back to real</div></div>
-        </div>
-      </div>
-      <div class="float-caps">
-        <div class="reveal"><b>Hold</b>One exact place, kept for hours, set again by itself if it slips.</div>
-        <div class="reveal d1"><b>Move</b>Walk, cycle or drive a route on real roads, with real speed.</div>
-        <div class="reveal d2"><b>Lock screen</b>See it and stop it without unlocking. Black and quiet.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- How it works -->
 <section>
   <div class="wrap">
@@ -161,6 +126,20 @@
       <div class="node apps"><span class="label">05</span><span>Find My</span><span>Maps</span><span>Weather</span><span>Every app</span></div>
     </div>
   </div>
+</section>
+
+<!-- Notes over real ground -->
+<section class="ground" data-ground>
+  <div class="ground-img" style="background-image:url('/aerial-davis.jpg')"></div>
+  <div class="ground-shade"></div>
+  <svg class="ground-pin" viewBox="0 0 260 340" aria-hidden="true"><path d="M110 318C110 318 8 196 8 120A102 102 0 1 1 212 120C212 196 110 318 110 318Z" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/><path d="M150 338C150 338 48 216 48 140A102 102 0 1 1 252 140C252 216 150 338 150 338Z" fill="#f4f4f1"/><circle cx="150" cy="138" r="36" fill="#4f69f2"/></svg>
+  <div class="ground-shadow"></div>
+  <div class="wrap notes">
+    <div class="note-item reveal"><span class="note-tag">Note &mdash; 01<br>2026</span><p><sup>1</sup> The place you set is the place every app sees. That exact place, to the metre, until you change it.</p></div>
+    <div class="note-item reveal"><span class="note-tag">Note &mdash; 02<br>2026</span><p><sup>2</sup> Every figure on this site was measured on a real iPhone. Where we have no figure, we make no claim.</p></div>
+    <div class="note-item reveal"><span class="note-tag">Note &mdash; 03<br>2026</span><p><sup>3</sup> Nothing about you leaves your phone. No account, no tracking, no ads.</p></div>
+  </div>
+  <p class="ground-credit">Davis, California. Aerial imagery: USGS / USDA NAIP, public domain.</p>
 </section>
 
 <!-- 4. Spec sheet -->
@@ -239,6 +218,16 @@
       <div><b>Held</b>Kept for hours, reconnected by itself.</div>
       <div><b>Yours</b>No account. Nothing about you leaves the phone.</div>
     </div>
+    <table class="catalogue">
+      <thead><tr><th></th><th>Mode</th><th>Speed</th><th>Locked phone</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><svg viewBox="0 0 120 80"><path d="M60 72C60 72 38 46 38 32A22 22 0 1 1 82 32C82 46 60 72 60 72Z" fill="none" stroke="#0a0a0c" stroke-width="1.5"/><circle cx="60" cy="32" r="8" fill="none" stroke="#0a0a0c" stroke-width="1.5"/><ellipse cx="60" cy="74" rx="16" ry="3" fill="none" stroke="#0a0a0c" stroke-width="1"/></svg></td><td>Spot<br><span>01</span></td><td>Still</td><td>Holds</td><td>One exact place, kept until you change it.</td></tr>
+        <tr><td><svg viewBox="0 0 120 80"><path d="M14 66 L14 46 L46 46 L46 24 L78 24 L78 12 L106 12" fill="none" stroke="#0a0a0c" stroke-width="1.5" stroke-linejoin="round"/><circle cx="14" cy="66" r="4" fill="none" stroke="#0a0a0c" stroke-width="1.5"/><circle cx="106" cy="12" r="4" fill="#0a0a0c"/></svg></td><td>Route<br><span>02</span></td><td>1 to 140 km/h</td><td>Keeps moving</td><td>Walk, run, cycle or drive real roads, with braking and corners.</td></tr>
+        <tr><td><svg viewBox="0 0 120 80"><circle cx="60" cy="40" r="30" fill="none" stroke="#0a0a0c" stroke-width="1.5"/><circle cx="72" cy="32" r="10" fill="none" stroke="#0a0a0c" stroke-width="1.5"/><path d="M60 14v6M60 60v6M34 40h6M80 40h6" stroke="#0a0a0c" stroke-width="1.5"/></svg></td><td>Joystick<br><span>03</span></td><td>By hand</td><td>Holds</td><td>Steer the held place, in the direction the map is turned.</td></tr>
+        <tr><td><svg viewBox="0 0 120 80"><circle cx="60" cy="40" r="30" fill="none" stroke="#0a0a0c" stroke-width="1.5"/><path d="M60 22V40L72 48" fill="none" stroke="#0a0a0c" stroke-width="1.5" stroke-linecap="round"/></svg></td><td>Schedule<br><span>04</span></td><td>On time</td><td>Sets itself</td><td>A saved place at a time you choose, on the days you choose.</td></tr>
+      </tbody>
+    </table>
+    <p class="poster-count">01 / 04</p>
   </div>
 </div>
 
@@ -256,7 +245,7 @@
       <div class="use reveal d1"><span class="label">Safety</span><h3>Stay private when it matters</h3><p>On a date, at an event, on a trip: share a place you are comfortable sharing.</p></div>
       <div class="use reveal d2"><span class="label">Research</span><h3>See how apps react</h3><p>Study what apps do with location and how they treat a simulated one.</p></div>
     </div>
-    <p style="margin-top:36px" class="reveal"><a class="btn ghost" href="/uses.html">Every use, explained <span class="arrow">&rarr;</span></a></p>
+    <p style="margin-top:36px" class="reveal"><a class="btn ghost" href="/uses">Every use, explained <span class="arrow">&rarr;</span></a></p>
   </div>
 </section>
 
@@ -388,7 +377,7 @@
     <details><summary>It does not hide that it is simulated</summary><p>iOS marks a simulated location, and Elsewhere does not cover that up. Some apps check.</p></details>
     <details><summary>Find My viewers see the place you set</summary><p>Anyone who can see your location sees the place you picked. What you do with that is up to you.</p></details>
     <details><summary>Restarting brings back your real location</summary><p>On purpose. Then Set again puts you back in one tap.</p></details>
-    <p style="margin-top:32px"><a class="btn ghost" href="/help.html">All answers <span class="arrow">&rarr;</span></a></p>
+    <p style="margin-top:32px"><a class="btn ghost" href="/help">All answers <span class="arrow">&rarr;</span></a></p>
   </div>
 </section>
 
@@ -398,13 +387,13 @@
   <div class="wrap">
     <p class="big">Elsewhere.</p>
     <div class="links">
-      <a href="/uses.html">Uses</a>
-      <a href="/install.html">Install</a>
-      <a href="/pricing.html">Pricing</a>
-      <a href="/help.html">Help</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/refunds.html">Refunds</a>
+      <a href="/uses">Uses</a>
+      <a href="/install">Install</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/help">Help</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/refunds">Refunds</a>
       <a href="mailto:nanimswa@gmail.com">Contact</a>
     </div>
     <p>Built by Nimit. Not affiliated with Apple. iPhone, Find My and iOS are trademarks of Apple Inc. Nothing on this site is an offer to sell securities.</p>
