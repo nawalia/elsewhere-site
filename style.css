@@ -492,3 +492,5 @@ h2 .soft { font-weight: 400; }
 .checksum code { font: 400 11px var(--mono); word-break: break-all; color: var(--ink-2); }
 .release { border-top: 1px solid var(--line-2); padding: 22px 0; }
 .release ul { margin: 10px 0 0; padding-left: 20px; color: var(--ink-2); display: grid; gap: 6px; }
+.optin { grid-column: 1 / -1; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--ink-2); font-weight: 400; }
+.optin input { margin-top: 3px; accent-color: var(--blue); }

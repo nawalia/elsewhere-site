@@ -72,6 +72,7 @@
       <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email">
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <button class="btn blue" type="submit">Put me on the list</button>
+      <label class="optin"><input type="checkbox" name="future"> Also tell me when Nimit makes something new. Rarely, and you can say stop any time.</label>
     </form>
     <p class="join-msg" id="join-msg" aria-live="polite"></p>
   </div>
@@ -191,7 +192,7 @@ document.getElementById("join").addEventListener("submit", async (event) => {
     const res = await fetch("https://btatbozstmkrfsfphriy.supabase.co/rest/v1/support_tickets", {
       method: "POST",
       headers: { apikey: key, Authorization: "Bearer " + key, "Content-Type": "application/json", Prefer: "return=minimal" },
-      body: JSON.stringify({ ticket, secret: crypto.randomUUID(), email, message: "Beta list: please tell me when I can install Elsewhere." }),
+      body: JSON.stringify({ ticket, secret: crypto.randomUUID(), email, message: "Beta list: please tell me when I can install Elsewhere." + (form.future.checked ? " Also future projects: yes." : "") }),
     });
     if (!res.ok) throw new Error(res.status);
     localStorage.setItem("elsewhere-list", String(tries + 1));
