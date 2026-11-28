@@ -308,7 +308,7 @@
       body: JSON.stringify({ path: (location.pathname + source()).slice(0, 200), referrer }),
     }).catch(() => {});
     // Downloads count as their own event, so visits and downloads can be compared per source.
-    for (const a of document.querySelectorAll('a[href$=".zip"]')) {
+    for (const a of document.querySelectorAll('a[href$=".zip"], a[href$=".dmg"]')) {
       a.addEventListener("click", () => {
         fetch("https://btatbozstmkrfsfphriy.supabase.co/rest/v1/page_views", {
           method: "POST", keepalive: true,
