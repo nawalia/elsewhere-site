@@ -317,6 +317,17 @@
         }).catch(() => {});
       });
     }
+    // Video plays: once per video per visit, e.g. /event/play-how-it-works.
+    for (const v of document.querySelectorAll("video")) {
+      const name = ((v.querySelector("source") || v).getAttribute("src") || "video").split("/").pop().replace(/\.\w+$/, "");
+      v.addEventListener("play", () => {
+        fetch("https://btatbozstmkrfsfphriy.supabase.co/rest/v1/page_views", {
+          method: "POST", keepalive: true,
+          headers: { apikey: key, Authorization: "Bearer " + key, "Content-Type": "application/json", Prefer: "return=minimal" },
+          body: JSON.stringify({ path: ("/event/play-" + name + source()).slice(0, 200), referrer }),
+        }).catch(() => {});
+      }, { once: true });
+    }
   } catch {}
 })();
 
